@@ -51,7 +51,8 @@ class VideoDepthAnythingDepthModel(DepthEstimationModel):
         self.is_metric = False
         if model == "vits":
             self.ckpt_url = "https://huggingface.co/depth-anything/Video-Depth-Anything-Small/resolve/main/video_depth_anything_vits.pth"
-            self.use_fp32 = True
+            # fp16 autocast (was True) — halves motion-module activation memory so VDA fits 12 GB (RTX 3060)
+            self.use_fp32 = False
         elif model == "vitl":
             self.ckpt_url = "https://huggingface.co/depth-anything/Video-Depth-Anything-Large/resolve/main/video_depth_anything_vitl.pth"
             self.use_fp32 = False

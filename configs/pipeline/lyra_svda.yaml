@@ -1,0 +1,11 @@
+# lyra pipeline (MoGE2 keyframe depth + Video-Depth-Anything temporal alignment)
+# but with the SMALL VDA backbone (vits) instead of vitl, to fit 12 GB VRAM (RTX 3060).
+# adaptive_moge_svda -> metric=moge, video=svda -> VideoDepthAnything "vits".
+defaults:
+  - default
+
+slam:
+  keyframe_depth: moge
+
+post:
+  depth_align_model: "adaptive_moge_svda"
