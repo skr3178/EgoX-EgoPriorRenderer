@@ -446,7 +446,8 @@ def build_background_pointcloud(
         logger.info("Successfully transformed background point cloud to world coordinate system")
 
         # Store transformation info for consistency checks
-        return global_points, global_colors, image_size, T_cam_to_world
+        # (caller unpacks 3; T_cam_to_world is the same object it passed in)
+        return global_points, global_colors, image_size
 
     else:
         global_points = np.empty((0, 3))
